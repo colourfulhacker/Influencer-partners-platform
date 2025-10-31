@@ -32,7 +32,12 @@ const AdminTasksPage = () => {
   });
 
   useEffect(() => {
-    if (user?.role !== 'admin') {
+    if (user === undefined) return; // Wait for auth to load
+    if (user === null) {
+      router.push('/login');
+      return;
+    }
+    if (user.role !== 'admin') {
       router.push('/influencer/dashboard');
       return;
     }
