@@ -39,6 +39,7 @@ export interface Influencer {
 export interface VideoSubmission {
   id: string;
   influencer_id: string;
+  task_assignment_id?: string;
   title: string;
   description: string;
   video_url?: string;
@@ -72,6 +73,7 @@ export interface Payment {
   id: string;
   influencer_id: string;
   video_submission_id?: string;
+  task_assignment_id?: string;
   amount: number;
   payment_type: 'fixed' | 'revenue_share';
   payment_status: PaymentStatus;
@@ -79,6 +81,9 @@ export interface Payment {
   paid_at?: string;
   paid_by?: string;
   month?: string;
+  follower_band?: FollowerBand;
+  lead_revenue?: number;
+  performance_share?: number;
   notes?: string;
   created_at: string;
   updated_at: string;
@@ -117,4 +122,117 @@ export interface AdminDashboardStats {
   total_payments_made: number;
   pending_payments: number;
   district_coverage: { district: string; state: string; count: number }[];
+}
+
+export type TaskStatus = 'assigned' | 'in_progress' | 'submitted' | 'completed' | 'rejected';
+export type FollowerBand = '0-5k' | '5k-25k' | '25k-100k' | '100k+';
+export type FileType = 'pdf' | 'video' | 'image' | 'document';
+export type ResourceCategory = 'general' | 'training' | 'guidelines' | 'examples';
+export type AccessLevel = 'all' | 'influencer' | 'admin';
+
+export interface MarketingProject {
+  id: string;
+  title: string;
+  description: string;
+  objectives: string[];
+  target_audience: string;
+  deliverables: string[];
+  guidelines: string;
+  sample_script?: string;
+  is_active: boolean;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MonthlyTask {
+  id: string;
+  project_id?: string;
+  title: string;
+  description: string;
+  topic: string;
+  guidelines: string;
+  deliverables_required: string[];
+  month: string;
+  year: number;
+  is_default: boolean;
+  created_by?: string;
+  created_at: string;
+  updated_at: string;
+  project?: MarketingProject;
+}
+
+export interface TaskAssignment {
+  id: string;
+  task_id: string;
+  influencer_id: string;
+  assigned_month: string;
+  assigned_year: number;
+  status: TaskStatus;
+  submission_id?: string;
+  started_at?: string;
+  submitted_at?: string;
+  completed_at?: string;
+  assigned_by?: string;
+  created_at: string;
+  updated_at: string;
+  task?: MonthlyTask;
+  influencer?: Influencer;
+  submission?: VideoSubmission;
+}
+
+export interface RevenueShare {
+  id: string;
+  influencer_id: string;
+  month: string;
+  year: number;
+  follower_band: FollowerBand;
+  fixed_payout: number;
+  leads_generated: number;
+  revenue_from_leads: number;
+  performance_share_percentage: number;
+  performance_share_amount: number;
+  total_earning: number;
+  videos_approved: number;
+  payment_status: 'pending' | 'calculated' | 'paid';
+  payment_id?: string;
+  calculated_at?: string;
+  calculated_by?: string;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+  influencer?: Influencer;
+  payment?: Payment;
+}
+
+export interface GuidebookResource {
+  id: string;
+  title: string;
+  description?: string;
+  file_url: string;
+  file_type: FileType;
+  file_size?: number;
+  category: ResourceCategory;
+  is_active: boolean;
+  access_level: AccessLevel;
+  uploaded_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface EnhancedInfluencerStats extends InfluencerStats {
+  assigned_tasks: number;
+  completed_tasks: number;
+  in_progress_tasks: number;
+  current_month_revenue: number;
+  follower_band: FollowerBand;
+  guidebooks_available: number;
+}
+
+export interface EnhancedAdminDashboardStats extends AdminDashboardStats {
+  active_marketing_projects: number;
+  tasks_assigned_this_month: number;
+  tasks_completed_this_month: number;
+  total_revenue_distributed: number;
+  average_completion_rate: number;
 }

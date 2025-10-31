@@ -61,21 +61,35 @@ A professional web platform for managing influencer collaborations and local mar
    - ID proof upload (Aadhaar/PAN)
    - UPI ID for payments
    - District-wise tagging
+   - Follower count tracking for revenue tier assignment
 
-2. **Video Management**
-   - Submit videos for approval before posting
+2. **Monthly Task Assignments**
+   - Receive 2 curated tasks per month
+   - Focus on IT services, EdTech, AgriTech, HealthTech promotion
+   - Complete guidelines and sample scripts provided
+   - Task progress tracking and completion status
+
+3. **Innovation Playbook Access**
+   - Access Cehpoint Innovation Movement guidebook
+   - Marketing strategies for IT service promotion
+   - Industry-specific content ideas (6 sectors)
+   - Sample post templates and scripts
+
+4. **Video Management**
+   - Submit videos linked to assigned tasks
+   - Pre-approval before posting
    - Track approval status
-   - View rejection reasons
    - Upload proof of posting
 
-3. **Payment Tracking**
-   - View payment history
-   - Fixed payments per video
-   - Revenue share (5% for 2+ videos/month)
+5. **Enhanced Payment Tracking**
+   - Follower-based payout tiers: ₹2K-₹10K per video
+   - 5% revenue share from generated leads
+   - View earnings breakdown (fixed + performance)
+   - Monthly revenue calculations
    - UPI transaction tracking
 
-4. **Guidelines & Support**
-   - Comprehensive promotion guidelines
+6. **Guidelines & Support**
+   - Comprehensive promotion guidelines for IT services
    - Do's and don'ts
    - Content creation best practices
    - 30-day no-delete policy
@@ -87,24 +101,46 @@ A professional web platform for managing influencer collaborations and local mar
    - Pending approvals count
    - District-wise coverage map
    - Payment statistics
+   - Active tasks and completion rates
 
-2. **Influencer Management**
+2. **Marketing Project Management**
+   - Create IT service promotion campaigns
+   - Define objectives and target audiences
+   - Set guidelines and sample scripts
+   - Manage multiple projects simultaneously
+
+3. **Task Assignment System**
+   - Create monthly promotional tasks
+   - Assign 2 tasks per influencer automatically
+   - Define topics (EdTech, AgriTech, HealthTech, Tourism, Finance, Retail)
+   - Set deliverables and guidelines
+   - Track task completion across influencers
+
+4. **Influencer Management**
    - Review applications
    - Approve/reject influencers
    - View complete profiles
-   - Track performance
+   - Track performance and follower bands
 
-3. **Video Approval System**
-   - Review submitted videos
+5. **Video Approval System**
+   - Review task-linked video submissions
    - Approve/reject with reasons
    - Track submission history
-   - Monitor compliance
+   - Monitor compliance with guidelines
 
-4. **Payment Management**
-   - Manual UPI payment tracking
-   - Record transaction IDs
+6. **Revenue Share Management**
+   - Automatic calculation by follower band
+   - Track fixed payouts (₹2K-₹10K per video)
+   - Monitor 5% performance share
+   - Lead revenue tracking
+   - Monthly revenue distribution reports
    - Export payment reports
-   - Revenue share calculations
+
+7. **Guidebook Management**
+   - Upload training materials and resources
+   - Manage Innovation Playbook
+   - Set access levels (all/influencer/admin)
+   - Track resource usage
 
 ## Environment Setup
 
@@ -206,6 +242,18 @@ The complete database schema is in `database-schema.sql`. Key tables:
 - Status: Active
 
 ## Recent Changes
+
+**October 31, 2025 - Innovation Movement Enhancement**
+- Rebranded to "Cehpoint Innovation Movement" platform
+- Enhanced database schema with task management system
+- Added monthly task assignments (2 tasks per influencer/month)
+- Implemented revenue sharing with follower bands (₹2K-₹10K per video)
+- Created marketing projects and promotional topics for IT services
+- Added guidebook resource management for training materials
+- Redesigned homepage with modern Innovation Movement branding
+- Comprehensive setup documentation and seed data scripts
+- Enhanced TypeScript types for all new features
+- Fixed security issues and type safety improvements
 
 **October 30, 2025**
 - Initial platform development
