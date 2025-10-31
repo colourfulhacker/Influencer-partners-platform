@@ -1,4 +1,4 @@
-# Cehpoint Marketing Partners - Influencer Platform
+# Cehpoint Influence Partners - Influencer Platform
 
 ## Project Overview
 
@@ -326,12 +326,26 @@ Potential improvements for future versions:
 9. Multi-language support
 10. District coverage map visualization
 
+## Demo Accounts
+
+After running the setup script, you can login with these credentials:
+
+### Admin Account
+- Email: `admin@cehpoint.com`
+- Password: `Cehpoint@2025`
+- Access: Full platform management
+
+### Influencer Account  
+- Email: `influencer@cehpoint.com`
+- Password: `Influencer@2025`
+- Access: Task board, revenue tracking, guidebook
+
 ## License
 
-Proprietary - Cehpoint Marketing Partners
+Proprietary - Cehpoint Influence Partners
 
 ---
 
 **Platform Status**: Production Ready  
-**Last Updated**: October 30, 2025  
-**Version**: 1.0.0
+**Last Updated**: October 31, 2025  
+**Version**: 2.0.0

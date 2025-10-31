@@ -26,7 +26,6 @@ const AdminTasksPage = () => {
     topic: 'edtech',
     deliverables_required: [] as string[],
     guidelines: '',
-    sample_post: '',
     month: new Date().toLocaleString('default', { month: 'long' }),
     year: new Date().getFullYear(),
     is_default: false,
@@ -70,14 +69,14 @@ const AdminTasksPage = () => {
 
       setShowCreateModal(false);
       setFormData({
-        task_title: '',
+        title: '',
         description: '',
         topic: 'edtech',
-        deliverables: '',
+        deliverables_required: [],
         guidelines: '',
-        sample_post: '',
         month: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear(),
+        is_default: false,
       });
       fetchData();
     } catch (error) {
@@ -138,7 +137,7 @@ const AdminTasksPage = () => {
               <div className="ml-4">
                 <p className="text-sm text-gray-600">Completed</p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {assignments.filter((a) => a.completion_status === 'completed').length}
+                  {assignments.filter((a) => a.status === 'completed').length}
                 </p>
               </div>
             </div>
@@ -173,7 +172,7 @@ const AdminTasksPage = () => {
                 <Card key={task.id} className="hover:shadow-lg transition-shadow">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{task.task_title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900">{task.title}</h3>
                       <p className="text-gray-600 mt-1">{task.description}</p>
                       <div className="flex gap-2 mt-2">
                         <Badge variant="info">{task.topic}</Badge>
@@ -193,7 +192,11 @@ const AdminTasksPage = () => {
                   <div className="grid md:grid-cols-2 gap-4 mt-4">
                     <div>
                       <h4 className="font-semibold text-gray-700 mb-2">Deliverables</h4>
-                      <p className="text-sm text-gray-600">{task.deliverables}</p>
+                      <ul className="text-sm text-gray-600 list-disc list-inside">
+                        {task.deliverables_required.map((d, idx) => (
+                          <li key={idx}>{d}</li>
+                        ))}
+                      </ul>
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-700 mb-2">Guidelines</h4>
@@ -201,12 +204,6 @@ const AdminTasksPage = () => {
                     </div>
                   </div>
 
-                  {task.sample_post && (
-                    <div className="mt-4 p-4 bg-green-50 rounded-lg">
-                      <h4 className="font-semibold text-gray-700 mb-2">Sample Post</h4>
-                      <p className="text-sm text-gray-600 italic">{task.sample_post}</p>
-                    </div>
-                  )}
                 </Card>
               );
             })
@@ -222,8 +219,8 @@ const AdminTasksPage = () => {
         <form onSubmit={handleCreateTask} className="space-y-4">
           <Input
             label="Task Title"
-            value={formData.task_title}
-            onChange={(e) => setFormData({ ...formData, task_title: e.target.value })}
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             required
             placeholder="e.g., Promote EdTech Startups in Your Region"
           />
@@ -240,27 +237,36 @@ const AdminTasksPage = () => {
             />
           </div>
 
-          <Select
-            label="Topic"
-            value={formData.topic}
-            onChange={(e) => setFormData({ ...formData, topic: e.target.value as any })}
-            required
-          >
-            <option value="edtech">EdTech</option>
-            <option value="agritech">AgriTech</option>
-            <option value="healthtech">HealthTech</option>
-            <option value="tourism">Tourism</option>
-            <option value="finance">Finance</option>
-            <option value="retail">Retail</option>
-          </Select>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Topic</label>
+            <select
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              value={formData.topic}
+              onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+              required
+            >
+              <option value="edtech">EdTech</option>
+              <option value="agritech">AgriTech</option>
+              <option value="healthtech">HealthTech</option>
+              <option value="tourism">Tourism</option>
+              <option value="finance">Finance</option>
+              <option value="retail">Retail</option>
+            </select>
+          </div>
 
-          <Input
-            label="Deliverables"
-            value={formData.deliverables}
-            onChange={(e) => setFormData({ ...formData, deliverables: e.target.value })}
-            required
-            placeholder="e.g., 1 video post (60-90 seconds)"
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Deliverables (comma-separated)
+            </label>
+            <textarea
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              rows={2}
+              value={formData.deliverables_required.join(', ')}
+              onChange={(e) => setFormData({ ...formData, deliverables_required: e.target.value.split(',').map(s => s.trim()) })}
+              required
+              placeholder="1 video post (60-90 seconds), 2 story posts"
+            />
+          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Guidelines</label>
@@ -270,17 +276,6 @@ const AdminTasksPage = () => {
               value={formData.guidelines}
               onChange={(e) => setFormData({ ...formData, guidelines: e.target.value })}
               placeholder="Content guidelines and requirements"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Sample Post</label>
-            <textarea
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              rows={3}
-              value={formData.sample_post}
-              onChange={(e) => setFormData({ ...formData, sample_post: e.target.value })}
-              placeholder="Example content for influencers"
             />
           </div>
 

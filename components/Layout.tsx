@@ -34,17 +34,19 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const influencerNavItems = [
     { name: 'Dashboard', href: '/influencer/dashboard', icon: LayoutDashboard },
+    { name: 'My Tasks', href: '/influencer/tasks', icon: FileText },
     { name: 'Videos', href: '/influencer/videos', icon: Video },
-    { name: 'Payments', href: '/influencer/payments', icon: DollarSign },
-    { name: 'Guidelines', href: '/influencer/guidelines', icon: FileText },
+    { name: 'Revenue', href: '/influencer/revenue', icon: DollarSign },
+    { name: 'Guidebook', href: '/influencer/guidebook', icon: FileText },
   ];
 
   const adminNavItems = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Influencers', href: '/admin/influencers', icon: Users },
+    { name: 'Projects', href: '/admin/projects', icon: FileText },
+    { name: 'Tasks', href: '/admin/tasks', icon: FileText },
     { name: 'Videos', href: '/admin/videos', icon: Video },
     { name: 'Payments', href: '/admin/payments', icon: DollarSign },
-    { name: 'Reports', href: '/admin/reports', icon: FileText },
   ];
 
   const navItems = user?.role === 'admin' ? adminNavItems : influencerNavItems;
