@@ -8,10 +8,10 @@ const Home: NextPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Head>
-        <title>Cehpoint Innovation Movement - Empowering Digital India</title>
+        <title>Cehpoint Influence Partners - Empowering Digital India</title>
         <meta
           name="description"
-          content="Join the Innovation Movement. Empower local entrepreneurs through technology and earn while promoting digital transformation across India."
+          content="Join Cehpoint Influence Partners. Empower local entrepreneurs through technology and earn while promoting digital transformation across India."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -19,10 +19,9 @@ const Home: NextPage = () => {
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-2">
-              <Sparkles className="h-8 w-8 text-blue-600" />
+            <div className="flex items-center">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Cehpoint Innovation
+                Cehpoint Influence Partners
               </h1>
             </div>
             <div className="flex space-x-4">

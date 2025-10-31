@@ -62,7 +62,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
               <h1 className="text-xl font-bold text-primary-600 ml-2 lg:ml-0">
-                Cehpoint Marketing Partners
+                Cehpoint Influence Partners
               </h1>
             </div>
             <div className="flex items-center space-x-4">
